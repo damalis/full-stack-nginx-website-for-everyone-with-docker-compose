@@ -97,10 +97,10 @@ services:
         volumes:
             - type: bind
               source: ./phpmyadmin/apache2/sites-available/default-ssl.conf
-              target: '${APACHE_CONFDIR}/sites-available/default-ssl.conf'            
+              target: '${APACHE_CONFDIR_PREFIX}/sites-available/default-ssl.conf'            
             - type: bind
               source: ./phpmyadmin/apache2/ports.conf
-              target: '${APACHE_CONFDIR}/ports.conf'
+              target: '${APACHE_CONFDIR_PREFIX}/ports.conf'
             - type: bind
               source: ./phpmyadmin/ssl-option/options-ssl-apache.conf
               target: '${LETSENCRYPT_CONF_PREFIX}/options-ssl-apache.conf'
@@ -133,7 +133,7 @@ services:
             bash -c "echo ${PMA_HTPASSWD_USERNAME}:phpmyadmin:$$( printf \"%s:%s:%s\" \"${PMA_HTPASSWD_USERNAME}\" \"phpmyadmin\" \"${PMA_HTPASSWD_PASSWORD}\" | md5sum | awk '{print $$1}' ) > ${PMA_CONF_FOLDER}/.htpasswd 
             && printf 'AuthType Digest\nAuthName \"phpmyadmin\"\nAuthDigestProvider file\nAuthUserFile ${PMA_CONF_FOLDER}/.htpasswd\nRequire valid-user\n' > ${WEBSERVER_DOC_ROOT}/.htaccess && a2enmod auth_digest; 
             mkdir -p ${WEBSERVER_DOC_ROOT}/../upload && chown www-data:www-data ${WEBSERVER_DOC_ROOT}/../upload && chmod a+w ${WEBSERVER_DOC_ROOT}/../upload && mkdir -p ${WEBSERVER_DOC_ROOT}/../save && chown www-data:www-data ${WEBSERVER_DOC_ROOT}/../save && chmod a+w ${WEBSERVER_DOC_ROOT}/../save; 
-            grep -qxF 'ServerName 127.0.0.1' ${APACHE_CONFDIR}/apache2.conf || echo -e '\nServerName 127.0.0.1' >> ${APACHE_CONFDIR}/apache2.conf; grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; 
+            grep -qxF 'ServerName 127.0.0.1' ${APACHE_CONFDIR_PREFIX}/apache2.conf || echo -e '\nServerName 127.0.0.1' >> ${APACHE_CONFDIR_PREFIX}/apache2.conf; grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; 
             a2enmod ssl && a2ensite default-ssl && a2dissite 000-default && /docker-entrypoint.sh 'apache2-foreground'"
     
     database:
@@ -152,9 +152,9 @@ services:
             - '3306:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
-            MYSQL_DATABASE: '${JOOMLA_DB_NAME}'
-            MYSQL_USER: '${JOOMLA_DB_USER}'
-            MYSQL_PASSWORD: '${JOOMLA_DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_NAME}'
+            MYSQL_USER: '${DB_USER}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 'No'
             MYSQL_ROOT_HOST: '${MYSQL_ROOT_HOST}'
             TZ: '${LOCAL_TIMEZONE}'
