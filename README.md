@@ -109,7 +109,7 @@ change example.com to your domain name in ```./phpmyadmin/apache2/sites-availabl
 Firstly: will create external volume
 
 ```
-docker volume create --driver local --opt type=none --opt device=/home/ubuntu/full-stack-webserver-for-everyone-with-docker-compose/certbot --opt o=bind certbot-etc
+docker volume create --driver local --opt type=none --opt device=/home/ubuntu/full-stack-nginx-webserver-for-everyone-with-docker-compose/certbot --opt o=bind certbot-etc
 ```
 
 ```
@@ -119,7 +119,7 @@ docker-compose up -d
 then reloading for webserver ssl configuration
 
 ```
-docker exec webserver httpd -k restart
+docker exec webserver nginx -s reload
 ```
 
 The containers are now built and running. You should be able to access the Webserver with the configured IP in the browser address. `https://example.com`.
