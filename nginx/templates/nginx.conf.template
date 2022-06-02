@@ -90,20 +90,22 @@ server {
         default_type image/svg+xml;
 	}
 	location = /favicon.ico {
-		log_not_found off;        
+		log_not_found off;
+		access_log off;
 	}
 	location = /robots.txt {
 		allow all;
-		log_not_found off;        
+		log_not_found off;
+		access_log off;        
 	} 
 	#
 	# caching of files 
 	location ~* \.(ico|pdf|flv)$ {
 		expires 1y;
 	}
-
 	location ~* \.(js|css|png|jpg|jpeg|gif|swf|xml|txt)$ {
-		expires 14d;
+		expires max;
+		log_not_found off;
 	}
 	#
 	access_log off;
