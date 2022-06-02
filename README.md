@@ -1,24 +1,23 @@
-# full stack apache2 joomla for everyone with docker compose
+# [full stack nginx webserver for everyone with docker compose](https://github.com/damalis/full-stack-nginx-webserver-for-everyone-with-docker-compose)
 
-If You want to have a joomla website at short time; 
+If You want to have a webserver at short time; 
 
-Full stack Joomla:
-<p align="left"> <a href="https://www.joomla.org/" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/69416061?s=200&v=4" alt="joomla" height="40" width="40"/> </a> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" alt="docker" width="40" height="40" width="40"/> </a> <a href="https://mariadb.org/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/5877084?s=200&v=4" alt="mariadb" height="50" width="50"/> </a> <a href="https://www.php.net" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/25158?s=200&v=4" alt="php" height="40" width="40"/> </a> <a href="https://redis.io" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/1529926?s=200&v=4" alt="redis" height="40" width="40"/> </a> <a href="#" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/bash/bash.png" alt="Bash" height="50" width="50" /> </a>
- <a href="https://www.phpmyadmin.net/" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/1351977?s=200&v=4" alt="phpmyadmin" height="40" width="40"/> </a> <a href="https://www.apache.org/" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/47359?s=200&v=4" alt="apache" height="40" width="40"/> </a> <a href="https://letsencrypt.org/" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/17889013?s=200&v=4" alt="letsencrypt" height="40" width="40"/> </a> <a href="https://www.portainer.io/?hsLang=en" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/22225832?s=200&v=4" alt="portainer" height="40" width="40"/> </a> </p>
+#### Full stack Webserver:
+<p align="left"> <a href="https://www.php.net" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/github/explore/ccc16358ac4530c6a69b1b80c7223cd2744dea83/topics/php/php.png" alt="php" height="40" width="40"/> </a> <a href="https://mariadb.org/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/4739304?s=200&v=4" alt="mariadb" height="40" width="40"/> </a>  
+ <a href="https://www.phpmyadmin.net/" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/1351977?s=200&v=4" alt="phpmyadmin" height="40" width="40"/> </a> <a href="https://certbot.eff.org/" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/17889013?s=200&v=4" alt="certbot" height="40" width="40"/> </a> <a href="https://letsencrypt.org/" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/9289019?s=200&v=4" alt="letsencrypt" height="40" width="40"/> </a> <a href="https://www.portainer.io/?hsLang=en" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://avatars.githubusercontent.com/u/22225832?s=200&v=4" alt="portainer" height="40" width="40"/> </a> <a href="https://docs.docker.com/compose/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/docker/compose/v2/logo.png" alt="docker compose" width="40" height="40" width="40"/> </a> <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer"> <img style="margin: 10px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/bash/bash.png" alt="Bash" height="40" width="40" /> </a> </p>
 
 Plus, manage docker containers with Portainer.
 
-With this project you can quickly run the following:
+#### With this project you can quickly run the following:
 
-- [joomla (php-fpm)](https://hub.docker.com/_/joomla)
-- [webserver (apache2/httpd)](https://hub.docker.com/_/httpd)
+- [php (php-fpm)](https://hub.docker.com/_/php?tab=tags&page=1&name=fpm)
+- [nginx](https://hub.docker.com/_/nginx)
 - [certbot (letsencrypt)](https://hub.docker.com/r/certbot/certbot)
 - [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
 - [database](https://hub.docker.com/_/mariadb)
-- [redis](https://hub.docker.com/_/redis)
 - [backup](https://hub.docker.com/r/futurice/docker-volume-backup)
 
-For certbot (letsencrypt) certificate:
+#### For certbot (letsencrypt) certificate:
 
 - [Set DNS configuration of your domain name](https://support.google.com/a/answer/48090?hl=en)
 
@@ -30,7 +29,7 @@ Create rules to open ports to the internet, or to a specific IPv4 address or ran
 - portainer: 9001
 - phpmyadmin: 9090
 
-Contents:
+#### Contents:
 
 - [Auto Configuration and Installation](#automatic)
 - [Requirements](#requirements)
@@ -43,13 +42,15 @@ Contents:
 ### Exec install shell script for auto installation and configuration
 
 download with
+
 ```
-git clone https://github.com/damalis/full-stack-apache2-joomla-for-everyone-with-docker-compose.git
+git clone https://github.com/damalis/full-stack-nginx-webserver-for-everyone-with-docker-compose.git
 ```
+
 Open a terminal and `cd` to the folder in which `docker-compose.yml` is saved and run:
 
 ```
-cd full-stack-apache2-joomla-for-everyone-with-docker-compose
+cd full-stack-nginx-webserver-for-everyone-with-docker-compose
 chmod +x install.sh
 ./install.sh
 ```
@@ -68,14 +69,15 @@ Make sure to [add your user to the `docker` group](https://docs.docker.com/insta
 ## Configuration
 
 download with
+
 ```
-git clone https://github.com/damalis/full-stack-apache2-joomla-for-everyone-with-docker-compose.git
+git clone https://github.com/damalis/full-stack-nginx-webserver-for-everyone-with-docker-compose.git
 ```
 
 Open a terminal and `cd` to the folder in which `docker-compose.yml` is saved and run:
 
 ```
-cd full-stack-apache2-joomla-for-everyone-with-docker-compose
+cd full-stack-nginx-webserver-for-everyone-with-docker-compose
 ```
 
 ### Manual Configuration
@@ -86,7 +88,7 @@ Copy the example environment into `.env`
 cp env.example .env
 ```
 
-Edit the `.env` file to change values of ```LOCAL_TIMEZONE```, ```DOMAIN_NAME```, ```DIRECTORY_PATH```, ```LETSENCRYPT_EMAIL```, ```JOOMLA_DB_USER```, ```JOOMLA_DB_PASSWORD```, ```JOOMLA_DB_NAME```, ```MYSQL_ROOT_PASSWORD```, ```PMA_CONTROLUSER```, ```PMA_CONTROLPASS```, ```PMA_HTPASSWD_USERNAME``` and ```PMA_HTPASSWD_PASSWORD```.
+Edit the `.env` file to change values of ```LOCAL_TIMEZONE```, ```DOMAIN_NAME```, ```DIRECTORY_PATH```, ```LETSENCRYPT_EMAIL```, ```DB_USER```, ```DB_PASSWORD```, ```DB_NAME```, ```MYSQL_ROOT_PASSWORD```, ```PMA_CONTROLUSER```, ```PMA_CONTROLPASS```, ```PMA_HTPASSWD_USERNAME``` and ```PMA_HTPASSWD_PASSWORD```.
 
 LOCAL_TIMEZONE=[to see local timezones](https://docs.diladele.com/docker/timezones.html)
 
@@ -105,8 +107,9 @@ change example.com to your domain name in ```./phpmyadmin/apache2/sites-availabl
 ### Manual Installation
 
 Firstly: will create external volume
+
 ```
-docker volume create --driver local --opt type=none --opt device=/home/ubuntu/full-stack-apache2-joomla-for-everyone-with-docker-compose/certbot --opt o=bind certbot-etc
+docker volume create --driver local --opt type=none --opt device=/home/ubuntu/full-stack-webserver-for-everyone-with-docker-compose/certbot --opt o=bind certbot-etc
 ```
 
 ```
@@ -116,10 +119,10 @@ docker-compose up -d
 then reloading for webserver ssl configuration
 
 ```
-docker exec webserver nginx -s reload
+docker exec webserver httpd -k restart
 ```
 
-The containers are now built and running. You should be able to access the Joomla installation with the configured IP in the browser address. `https://example.com`.
+The containers are now built and running. You should be able to access the Webserver with the configured IP in the browser address. `https://example.com`.
 
 For convenience you may add a new entry into your hosts file.
 
@@ -128,6 +131,7 @@ For convenience you may add a new entry into your hosts file.
 ```
 docker-compose -f portainer-docker-compose.yml -p portainer up -d 
 ```
+
 manage docker with [Portainer](https://www.portainer.io/solutions/docker) is the definitive container management tool for Docker, Docker Swarm with it's highly intuitive GUI and API. 
 
 You can also visit `https://example.com:9001` to access portainer after starting the containers.
@@ -152,13 +156,13 @@ docker-compose stop
 
 ### Removing containers
 
-To stop and remove all the containers use the`down` command:
+To stop and remove all the containers use the `down` command:
 
 ```
 docker-compose down
 ```
 
-to remove portainer and the other containers
+to remove portainer container and the other containers
 ```
 docker rm -f $(docker ps -a -q)
 ```
@@ -202,21 +206,11 @@ pm.max_requests = 1000
 Or you should make changes custom host configurations then must restart service
 
 ```
-docker container restart <joomla_container_id>
+docker container restart <web_container_id>
 ```
 
-add and/or remove joomla site folders and files with any ftp client program in ```./joomla``` folder.
-<br />You can also visit `https://example.com` to access website after starting the containers.
-
-#### Redis
-
-set and enable cache option at global configuration [Redis Cache](https://example.com/administrator/).
-
-Cache Handler = redis
-
-Redis Server Host = redis
-
-Redis Server Port = 6379
+add and/or remove base html/php-fpm themes, plugins or custom code folders and files with any ftp client program to ./html folder
+<br /><br />contains your website’s base configuration details, such as database connection information. You can set custom configuration for your website in this file.
 
 ### phpMyAdmin
 
