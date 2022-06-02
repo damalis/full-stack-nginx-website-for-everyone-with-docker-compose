@@ -79,7 +79,7 @@ services:
         volumes:
             - 'certbot-etc:${LETSENCRYPT_CONF_PREFIX}'
             - 'certbot-var:/var/lib/letsencrypt'
-            - '/tmp/acme-challenge:/tmp/acme-challenge'                        
+            - '/tmp/acme-challenge:/tmp/acme-challenge' 
         restart: unless-stopped        
         environment:
             TZ: '${LOCAL_TIMEZONE}'
@@ -97,7 +97,7 @@ services:
         volumes:
             - type: bind
               source: ./phpmyadmin/apache2/sites-available/default-ssl.conf
-              target: '${APACHE_CONFDIR_PREFIX}/sites-available/default-ssl.conf'            
+              target: '${APACHE_CONFDIR_PREFIX}/sites-available/default-ssl.conf'
             - type: bind
               source: ./phpmyadmin/apache2/ports.conf
               target: '${APACHE_CONFDIR_PREFIX}/ports.conf'
@@ -106,13 +106,12 @@ services:
               target: '${LETSENCRYPT_CONF_PREFIX}/options-ssl-apache.conf'
             - type: bind
               source: ./phpmyadmin/config.user.inc.php
-              target: '${PMA_CONF_FOLDER}/config.user.inc.php'            
+              target: '${PMA_CONF_FOLDER}/config.user.inc.php'
             - type: bind
               source: ./phpmyadmin/php/conf.d/security.ini
               target: '${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini'
             - 'certbot-etc:${LETSENCRYPT_CONF_PREFIX}'
         hostname: phpmyadmin
-        ipc: private
         restart: unless-stopped
         ports:
             - '9090:443'
@@ -120,7 +119,7 @@ services:
         #    - database
         environment:
             #PMA_HOST: database
-            PMA_PMADB: phpmyadmin
+            PMA_PMADB: 'phpmyadmin'
             PMA_CONTROLUSER: '${PMA_CONTROLUSER}'
             PMA_CONTROLPASS: '${PMA_CONTROLPASS}'
             MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
@@ -160,7 +159,7 @@ services:
             TZ: '${LOCAL_TIMEZONE}'
         labels:            
             - "docker-volume-backup.stop-during-backup=true"
-        command: "--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password"
+        command: '--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password'        
     
     backup:
         image: 'futurice/docker-volume-backup'
@@ -188,11 +187,11 @@ networks:
 
 volumes:
     html:
-        name: jm-html
+        name: web-html
         driver: local
         driver_opts:
             type: none
-            device: ${DIRECTORY_PATH}/joomla
+            device: ${DIRECTORY_PATH}/html
             o: bind
     db:
         name: ${DATABASE_CONT_NAME}-data
