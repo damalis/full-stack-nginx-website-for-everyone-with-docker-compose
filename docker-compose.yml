@@ -184,7 +184,7 @@ services:
         labels:            
             - "docker-volume-backup.stop-during-backup=true"
         command: "redis-server ${REDIS_CONF_PREFIX}/redis/redis.conf"
-		
+
     backup:
         image: 'futurice/docker-volume-backup'
         container_name: backup
