@@ -6,7 +6,7 @@ services:
         depends_on:
             - database
         image: '${PHP_IMAGE_NAME}'
-        container_name: 'html-php-fpm'
+        container_name: 'web'
         networks:
             - backend            
         volumes:
@@ -29,7 +29,7 @@ services:
         labels:            
             - 'docker-volume-backup.stop-during-backup=true'
         command: bash -c "grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; 
-            sed -i 's/DB_USER/${DB_USER}/; s/DB_PASSWORD/${DB_PASSWORD}/; s/DB_NAME/${DB_NAME}/' ${WEBSERVER_DOC_ROOT}/index.php; php-fpm || pickle install redis"
+            sed -i 's/DB_USER/${DB_USER}/; s/DB_PASSWORD/${DB_PASSWORD}/; s/DB_NAME/${DB_NAME}/' ${WEBSERVER_DOC_ROOT}/index.php; php-fpm || pecl install redis -y && docker-php-ext-enable redis"
 
     webserver:
         depends_on:
