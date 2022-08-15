@@ -120,7 +120,7 @@ docker-compose up -d
 then reloading for webserver ssl configuration
 
 ```
-docker container restart <webserver_container_id>
+docker container restart webserver
 ```
 
 The containers are now built and running. You should be able to access the Webserver with the configured IP in the browser address. `https://example.com`.
