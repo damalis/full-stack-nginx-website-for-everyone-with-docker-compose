@@ -212,6 +212,14 @@ docker container restart <web_container_id>
 add and/or remove base html/php-fpm themes, plugins or custom code folders and files with any ftp client program to ./html folder
 <br /><br />contains your website’s base configuration details, such as database connection information. You can set custom configuration for your website in this file.
 
+#### Redis
+
+The phpredis extension provides an API for communicating with the Redis key-value store. [PhpRedis](https://github.com/phpredis/phpredis).
+
+Redis Server Host = redis
+
+Redis Server Port = 6379
+
 ### phpMyAdmin
 
 You can add your own custom config.inc.php settings (such as Configuration Storage setup) by creating a file named config.user.inc.php with the various user defined settings in it, and then linking it into the container using:
