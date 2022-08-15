@@ -207,7 +207,7 @@ pm.max_requests = 1000
 Or you should make changes custom host configurations then must restart service
 
 ```
-docker container restart <web_container_id>
+docker container restart web
 ```
 
 add and/or remove base html/php-fpm themes, plugins or custom code folders and files with any ftp client program to ./html folder
