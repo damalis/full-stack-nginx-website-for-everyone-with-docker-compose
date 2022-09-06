@@ -24,14 +24,15 @@ echo "<center>Server is running: " . $redis->ping('pong') . "</center>";
 
 echo "<br>";
 
+/*
 $args = array(
     VARNISH_CONFIG_HOST    => "varnish",
-    VARNISH_CONFIG_PORT    => 6082,
+    VARNISH_CONFIG_PORT    => 8080,
     VARNISH_CONFIG_SECRET  => "",
     VARNISH_CONFIG_TIMEOUT => 300,
 );
 
-//Connecting to Varnish server on localhost
+//Connecting to Varnish server
 $va = new VarnishAdmin($args);
 
 try {
@@ -61,6 +62,7 @@ try {
     echo $e->getMessage();
     exit(3);
 }
+*/
 
 phpinfo();
 
