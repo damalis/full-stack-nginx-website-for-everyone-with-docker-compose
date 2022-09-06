@@ -22,48 +22,6 @@ echo "<center>Connection to Redis Server sucessfully</center>";
 //check whether server is running or not 
 echo "<center>Server is running: " . $redis->ping('pong') . "</center>";
 
-echo "<br>";
-
-/*
-$args = array(
-    VARNISH_CONFIG_HOST    => "varnish",
-    VARNISH_CONFIG_PORT    => 8080,
-    VARNISH_CONFIG_SECRET  => "",
-    VARNISH_CONFIG_TIMEOUT => 300,
-);
-
-//Connecting to Varnish server
-$va = new VarnishAdmin($args);
-
-try {
-    if(!$va->connect()) {
-        throw new VarnishException("Connection failed\n");
-    }   
-} catch (VarnishException $e) {
-    echo $e->getMessage();
-    exit(3);
-}
-
-try {
-    if(!$va->auth()) {
-        throw new VarnishException("Auth failed\n");
-    }   
-} catch (VarnishException $e) {
-    echo $e->getMessage();
-    exit(3);
-}
-
-try {
-    $status = $va->ban('req.url ~ "^/$"');
-    if (VARNISH_STATUS_OK != $status) {
-        throw new VarnishException("Ban method returned $status status\n");
-    }
-} catch (VarnishException $e) {
-    echo $e->getMessage();
-    exit(3);
-}
-*/
-
 phpinfo();
 
 ?>
