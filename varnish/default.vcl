@@ -34,8 +34,7 @@ sub vcl_recv {
     unset req.http.proxy;
 	
     # Purge logic to remove objects from the cache. 
-    # Tailored to the Proxy Cache Purge WordPress plugin
-    # See https://wordpress.org/plugins/varnish-http-purge/
+    # Tailored to the Proxy Cache Purge
     if(req.method == "PURGE") {
         if(!client.ip ~ purge) {
             return(synth(405,"PURGE not allowed for this IP address"));
@@ -86,7 +85,7 @@ sub vcl_recv {
 
     # No caching of special URLs, logged in users and some plugins
     if (
-        req.http.Cookie ~ "wordpress_(?!test_)[a-zA-Z0-9_]+|wp-postpass|comment_author_[a-zA-Z0-9_]+|woocommerce_cart_hash|woocommerce_items_in_cart|wp_woocommerce_session_[a-zA-Z0-9]+|wordpress_logged_in_|comment_author|PHPSESSID" ||
+        req.http.Cookie ~ "" ||
         req.http.Authorization ||
         req.url ~ "add_to_cart" ||
         req.url ~ "edd_action" ||
@@ -110,13 +109,6 @@ sub vcl_recv {
         req.url ~ "^/signup" ||
         req.url ~ "^/stats" ||
         req.url ~ "^/wc-api" ||
-        req.url ~ "^/wp-admin" ||
-        req.url ~ "^/wp-comments-post.php" ||
-        req.url ~ "^/wp-cron.php" ||
-        req.url ~ "^/wp-login.php" ||
-        req.url ~ "^/wp-activate.php" ||
-        req.url ~ "^/wp-mail.php" ||
-        req.url ~ "^/wp-login.php" ||
         req.url ~ "^\?add-to-cart=" ||
         req.url ~ "^\?wc-api=" ||
         req.url ~ "^/preview=" ||
