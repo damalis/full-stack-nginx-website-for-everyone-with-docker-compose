@@ -85,7 +85,7 @@ sub vcl_recv {
 
     # No caching of special URLs, logged in users and some plugins
     if (
-        req.http.Cookie ~ "" ||
+      # req.http.Cookie ~ "" ||
         req.http.Authorization ||
         req.url ~ "add_to_cart" ||
         req.url ~ "edd_action" ||
