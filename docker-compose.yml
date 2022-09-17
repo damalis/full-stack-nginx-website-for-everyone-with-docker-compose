@@ -6,7 +6,7 @@ services:
         depends_on:
             - database
         image: '${PHP_IMAGE_NAME}'
-        container_name: 'web'
+        container_name: web
         networks:
             - backend            
         volumes:
