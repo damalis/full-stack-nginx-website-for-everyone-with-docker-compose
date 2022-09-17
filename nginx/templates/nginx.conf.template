@@ -41,12 +41,7 @@ server {
 	#ssl_trusted_certificate /etc/letsencrypt/live/${NGINX_HOST}/chain.pem;
 	#ssl_dhparam /etc/letsencrypt/ssl-dhparam.pem;
 	include /etc/letsencrypt/options-ssl-nginx.conf;
-    #
-	client_max_body_size 8m;
-	proxy_headers_hash_max_size 768;
-	proxy_headers_hash_bucket_size 128;
-	#
-	
+
 	# global gzip on
 	gzip on;
 	gzip_http_version 1.1;
@@ -83,34 +78,34 @@ server {
 		proxy_set_header Proxy "";        
 	}	
 	#
-	# deny running scripts inside writable directories
-	location ~* /(uploads|cache|media|logs|tmp|languages)/.*\.(php|pl|py|jsp|asp|sh|cgi)$ {
-		return 403;
-		error_page 403 /403_error.html;
-	}
-	#
 	# deny access to .htaccess vb. files, if Apache's document root
 	location ~/\. {
 		deny all;     
 		log_not_found off;
 	}
 	#
+	location ~ /.well-known {
+		allow all;
+	}
+	#	
 	location ~*  \.(svg|svgz)$ {
 		types {}
 		default_type image/svg+xml;
 	}
+	#
 	location = /favicon.ico {
 		log_not_found off;
 		access_log off;
 	}
+	#
 	location = /robots.txt {
 		allow all;
 		log_not_found off;
 		access_log off;
-	}	
+	}
 	#
 	access_log off;
-	error_log  /var/log/nginx/${NGINX_HOST}.error.log error;
+	error_log  /var/log/nginx/${NGINX_HOST}-443.error.log error;
 }
 
 server {
@@ -121,6 +116,7 @@ server {
 	#
 	
 	root /var/www/html;
+	index index.php;
 	
 	location / {
 		try_files $uri /index.php$is_args$args;
@@ -134,7 +130,7 @@ server {
 
 		# Mitigate https://httpoxy.org/ vulnerabilities
 		fastcgi_param HTTP_PROXY "";
-		fastcgi_param HTTPS $scheme;		
+		fastcgi_param HTTPS $scheme;
 
 		fastcgi_pass docker_web;
 		fastcgi_index index.php;
@@ -148,7 +144,12 @@ server {
 		# please comment off following line:
 		fastcgi_param  SCRIPT_FILENAME   $document_root$fastcgi_script_name;
 	}
+	# deny running scripts inside writable directories
+	location ~* /(uploads|images|cache|media|logs|tmp|languages)/.*\.(php|pl|py|jsp|asp|sh|cgi)$ {
+		return 403;
+		error_page 403 /403_error.html;
+	}
 	#
 	access_log off;
-	error_log  /var/log/nginx/${NGINX_HOST}.error.log error;
+	error_log  /var/log/nginx/${NGINX_HOST}-81.error.log error;
 }
