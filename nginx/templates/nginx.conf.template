@@ -1,4 +1,4 @@
-upstream docker_webserver {
+upstream docker_web {
 	server	web:9000;
 }
 
@@ -136,7 +136,7 @@ server {
 		fastcgi_param HTTP_PROXY "";
 		fastcgi_param HTTPS $scheme;		
 
-		fastcgi_pass docker_webserver;
+		fastcgi_pass docker_web;
 		fastcgi_index index.php;
 
 		# include the fastcgi_param setting
