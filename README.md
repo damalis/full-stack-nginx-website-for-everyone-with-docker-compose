@@ -209,10 +209,10 @@ pm.max_requests = 1000
 Or you should make changes custom host configurations then must restart service
 
 ```
-docker container restart web
+docker container restart website
 ```
 
-add and/or remove base html/php-fpm themes, plugins or custom code folders and files with any ftp client program to ./html folder
+add and/or remove base website/php-fpm themes, plugins or custom code folders and files with any ftp client program to ./website folder
 <br /><br />contains your website’s base configuration details, such as database connection information. You can set custom configuration for your website in this file.
 
 #### Redis
@@ -252,7 +252,7 @@ This will back up the all files and folders, once per day, and write it to ./bac
 ##### # old docker backup folder remove
 50 23 * * * find /home/ubuntu/${DIRECTORY_PATH}/backups/backup* -type f -mtime +1 | xargs rm
 
-##### # backup exclude html, backups folders in /home/ubuntu/${DIRECTORY_PATH}
+##### # backup exclude website, backups folders in /home/ubuntu/${DIRECTORY_PATH}
 00 01 * * * tar -czvf /home/ubuntu/${DIRECTORY_PATH}/backups/'backup-example.com-'$(date +"\%Y-\%m-\%dT\%H-\%M-\%S")'.tar.gz' --exclude='backups' /home/ubuntu/${DIRECTORY_PATH}
 
 [CronHowto](https://help.ubuntu.com/community/CronHowto)
