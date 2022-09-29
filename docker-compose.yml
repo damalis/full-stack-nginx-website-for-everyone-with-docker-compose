@@ -2,11 +2,11 @@ version: '3.7'
 
 services:
 
-    web:
+    website:
         depends_on:
             - database
         image: '${PHP_IMAGE_NAME}'
-        container_name: web
+        container_name: website
         networks:
             - backend            
         volumes:
@@ -17,7 +17,7 @@ services:
             - type: bind
               source: ./php-fpm/php-fpm.d/z-www.conf
               target: '${PHP_INI_DIR_PREFIX}/php-fpm.d/z-www.conf'
-        hostname: web
+        hostname: website
         restart: unless-stopped
         ports:
             - '9000:80'
@@ -35,7 +35,7 @@ services:
 
     webserver:
         depends_on:
-            - web
+            - website
         image: nginx:stable
         container_name: webserver
         networks:
@@ -64,7 +64,7 @@ services:
             - '443:443'
             - '81:81'
         links:
-            - web
+            - website
         environment:
             NGINX_HOST: ${DOMAIN_NAME}
             NGINX_PORT: 80
@@ -236,11 +236,11 @@ networks:
 
 volumes:
     html:
-        name: web-html
+        name: website-html
         driver: local
         driver_opts:
             type: none
-            device: ${DIRECTORY_PATH}/html
+            device: ${DIRECTORY_PATH}/website
             o: bind
     db:
         name: ${DATABASE_CONT_NAME}-data
