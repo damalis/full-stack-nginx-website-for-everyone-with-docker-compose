@@ -1,5 +1,5 @@
-upstream docker_web {
-	server	web:9000;
+upstream docker_website {
+	server	website:9000;
 }
 
 upstream docker_varnish  {
@@ -132,7 +132,7 @@ server {
 		fastcgi_param HTTP_PROXY "";
 		fastcgi_param HTTPS $scheme;
 
-		fastcgi_pass docker_web;
+		fastcgi_pass docker_website;
 		fastcgi_index index.php;
 
 		# include the fastcgi_param setting
