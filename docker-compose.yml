@@ -29,9 +29,10 @@ services:
             TZ: '${LOCAL_TIMEZONE}'
         labels:            
             - 'docker-volume-backup.stop-during-backup=true'
-        command: bash -c "docker-php-ext-install mysqli; pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis; 
-            grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; 
-            sed 's/DB_USER/${DB_USER}/;s/DB_PASSWORD/${DB_PASSWORD}/;s/DB_NAME/${DB_NAME}/' ${WEBSERVER_DOC_ROOT}/index.php_orj > ${WEBSERVER_DOC_ROOT}/index.php; php-fpm"
+        command: bash -c "docker-php-ext-install mysqli; pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis mysqli; 
+            sed 's/DB_USER/${DB_USER}/;s/DB_PASSWORD/${DB_PASSWORD}/;s/DB_NAME/${DB_NAME}/' ${WEBSERVER_DOC_ROOT}/index.php_orj > ${WEBSERVER_DOC_ROOT}/index.php;" 
+            grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini;  php-fpm"
+            
 
     webserver:
         depends_on:
