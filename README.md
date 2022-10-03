@@ -82,7 +82,7 @@ Open a terminal and `cd` to the folder in which `docker-compose.yml` is saved an
 cd full-stack-nginx-website-for-everyone-with-docker-compose
 ```
 
-### Manual Configuration
+### Manual
 
 Copy the example environment into `.env`
 
@@ -106,12 +106,12 @@ change example.com to your domain name in ```./phpmyadmin/apache2/sites-availabl
 
 ## Installation
 
-### Manual Installation
+### Manual
 
 Firstly: will create external volume
 
 ```
-docker volume create --driver local --opt type=none --opt device=/home/ubuntu/full-stack-nginx-website-for-everyone-with-docker-compose/certbot --opt o=bind certbot-etc
+docker volume create --driver local --opt type=none --opt device=${DIRECTORY_PATH}/certbot --opt o=bind certbot-etc
 ```
 
 ```
@@ -247,13 +247,19 @@ The first authorize screen(htpasswd;username or password) and phpmyadmin login s
 
 This will back up the all files and folders, once per day, and write it to ./backups with a filename like backup-2022-02-07T16-51-56.tar.gz 
 
-#### example for crontab file
+#### example for crontab file on the host machine
 
 ##### # old docker backup folder remove
-50 23 * * * find /home/ubuntu/${DIRECTORY_PATH}/backups/backup* -type f -mtime +1 | xargs rm
 
-##### # backup exclude website, backups folders in /home/ubuntu/${DIRECTORY_PATH}
-00 01 * * * tar -czvf /home/ubuntu/${DIRECTORY_PATH}/backups/'backup-example.com-'$(date +"\%Y-\%m-\%dT\%H-\%M-\%S")'.tar.gz' --exclude='backups' /home/ubuntu/${DIRECTORY_PATH}
+```
+50 23 * * * find ${DIRECTORY_PATH}/backups/backup* -type f -mtime +1 | xargs rm
+```
+
+##### # backup exclude website, backups folders in ${DIRECTORY_PATH}
+
+```
+00 01 * * * tar -czvf ${DIRECTORY_PATH}/backups/'backup-example.com-'$(date +"\%Y-\%m-\%dT\%H-\%M-\%S")'.tar.gz' --exclude='backups' ${DIRECTORY_PATH}
+```
 
 [CronHowto](https://help.ubuntu.com/community/CronHowto)
 							 
