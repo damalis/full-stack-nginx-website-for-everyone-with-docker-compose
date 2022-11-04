@@ -37,7 +37,7 @@ services:
             - 'docker-volume-backup.stop-during-backup=true'
         command: >
             bash -c "apt-get -y update && apt-get install -y libicu-dev && docker-php-ext-install mysqli intl; pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis mysqli intl; 
-            sed 's/DB_USER/${DB_USER}/;s/DB_PASSWORD/${DB_PASSWORD}/;s/DB_NAME/${DB_NAME}/' ${WEBSERVER_DOC_ROOT}/index.php_orj > ${WEBSERVER_DOC_ROOT}/index.php;" 
+            sed 's/DB_USER/${DB_USER}/;s/DB_PASSWORD/${DB_PASSWORD}/;s/DB_NAME/${DB_NAME}/' ${WEBSERVER_DOC_ROOT}/index.php_orj > ${WEBSERVER_DOC_ROOT}/index.php; 
             grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; php-fpm"
             
 
