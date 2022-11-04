@@ -107,7 +107,7 @@ server {
 	location ~ \.php$ {
 		#NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
 		include	fastcgi_params;
-		fastcgi_intercept_errors	on;
+		fastcgi_index	index.php;
 		fastcgi_pass	docker_website;
 		#The following parameter can be also included in fastcgi_params file
 		fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
