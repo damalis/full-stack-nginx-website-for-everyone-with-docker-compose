@@ -208,7 +208,7 @@ docker-compose up -d
 
 ### Website
 
-You should see the "Php informations" page in your browser. If not, please check if your PHP installation satisfies WordPress's requirements.
+You should see the "Php informations" page in your browser. If not, please check if your PHP installation satisfies Website's requirements.
 
 ```
 https://example.com
