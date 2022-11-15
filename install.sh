@@ -78,7 +78,7 @@ sudo curl -SL "https://github.com/docker/compose/releases/download/v2.12.2/docke
 sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 
 # permission for Docker daemon socket
-# sudo chmod 666 /var/run/docker.sock
+sudo chmod 666 /var/run/docker.sock
 
 echo ""
 echo "Done ✓"
