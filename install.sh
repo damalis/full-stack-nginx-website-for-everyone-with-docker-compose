@@ -219,7 +219,7 @@ sed -i 's/pma_password/'$pma_password'/' .env
 sed -i "s@directory_path@$(pwd)@" .env
 sed -i 's/local_timezone/'$local_timezone'/' .env
 
-if [ -x "$(command -v docker)" ]; then
+if [ -x "$(command -v docker)" ] && [ "$(docker compose version)" ]; then
     # Firstly: create external volume
 	docker volume create --driver local --opt type=none --opt device=`pwd`/certbot --opt o=bind certbot-etc > /dev/null
 	# installing Website and the other services
