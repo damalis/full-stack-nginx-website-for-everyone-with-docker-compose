@@ -213,7 +213,7 @@ docker compose up -d
 
 ### Website
 
-You should see the "Php informations" page in your browser. If not, please check if your PHP installation satisfies Website's requirements.
+You should see the "Php informations" page in your browser. If not, please check if your PHP installation satisfies Website's requirements or ```docker container restart varnish```.
 
 ```
 https://example.com
