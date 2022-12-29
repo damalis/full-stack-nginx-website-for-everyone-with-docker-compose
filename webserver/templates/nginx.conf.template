@@ -65,14 +65,34 @@ server {
 		proxy_set_header Proxy "";        
 	}	
 	#
+	access_log off;
+	error_log  /var/log/nginx/${NGINX_HOST}-443.error.log error;
+}
+
+server {
+	#listen 90;
+	#
+	server_name ${NGINX_HOST} www.${NGINX_HOST};
+	#
+	
+	root /var/www/html;
+	index index.php;
+	
+	location / {
+		try_files $uri /index.php$is_args$args;
+	}
+	
+	location ~ \.php$ {
+		include	fastcgi_params;
+		fastcgi_index	index.php;
+		fastcgi_pass	docker_website;
+		#The following parameter can be also included in fastcgi_params file
+		fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
+	}
 	# deny access to .htaccess vb. files, if Apache's document root
 	location ~/\. {
 		deny all;     
 		log_not_found off;
-	}
-	#
-	location ~ /.well-known {
-		allow all;
 	}
 	#
 	location = /favicon.ico {
@@ -87,32 +107,5 @@ server {
 	}
 	#
 	access_log off;
-	error_log  /var/log/nginx/${NGINX_HOST}-443.error.log error;
-}
-
-server {
-	#listen 81;
-	#listen [::]:81 ipv6only=on;
-	#
-	server_name ${NGINX_HOST} www.${NGINX_HOST};
-	#
-	
-	root /var/www/html;
-	index index.php;
-	
-	location / {
-		try_files $uri /index.php$is_args$args;
-	}
-	
-	location ~ \.php$ {
-		#NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
-		include	fastcgi_params;
-		fastcgi_index	index.php;
-		fastcgi_pass	docker_website;
-		#The following parameter can be also included in fastcgi_params file
-		fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
-	}
-	#
-	access_log off;
-	error_log  /var/log/nginx/${NGINX_HOST}-81.error.log error;
+	error_log  /var/log/nginx/${NGINX_HOST}-90.error.log error;
 }
