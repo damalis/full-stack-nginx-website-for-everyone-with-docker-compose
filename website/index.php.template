@@ -1,6 +1,6 @@
 <?php
 
-$link = mysqli_connect( 'database', 'DB_USER', 'DB_PASSWORD', 'DB_NAME' );
+$link = mysqli_connect( 'database', '${DB_USER}', '${DB_PASSWORD}', '${DB_NAME}' );
 
 //if connection is not successful you will see text error
 if ( !$link ) {
