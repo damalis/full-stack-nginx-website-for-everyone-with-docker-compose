@@ -250,9 +250,8 @@ if [ -x "$(command -v docker)" ] && [ "$(docker compose version)" ]; then
 			#	if [ ! -z `docker compose ps -a --filter "status=running" --services | grep webserver` ]; then break; fi
 			#done
 			echo ""
-			echo "Reloading webserver ssl configuration"
-            if [ ! $? = 0 ] || [ ! "$service" = webserver ]; then
-    			docker container restart webserver > /dev/null 2>&1
+			echo "Reloading webserver ssl configuration"            
+			docker container restart webserver > /dev/null 2>&1
 			echo "Ok."
 			echo ""
 			echo "completed setup"
