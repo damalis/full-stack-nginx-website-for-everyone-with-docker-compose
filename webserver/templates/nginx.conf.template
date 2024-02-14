@@ -37,7 +37,7 @@ server {
 	#ssl_certificate_key /etc/letsencrypt/live/${NGINX_HOST}/privkey.pem;
 	#ssl_trusted_certificate /etc/letsencrypt/live/${NGINX_HOST}/chain.pem;
 	#ssl_dhparam /etc/letsencrypt/ssl-dhparam.pem;
-	include /etc/letsencrypt/options-ssl-nginx.conf;	
+	include /etc/letsencrypt/options-ssl-nginx.conf;
 	
 	location / {		
 		proxy_pass	http://docker_varnish;		
@@ -63,7 +63,7 @@ server {
 		#
 		# Mitigate httpoxy attack
 		proxy_set_header Proxy "";        
-	}	
+	}
 	#
 	access_log off;
 	error_log  /var/log/nginx/${NGINX_HOST}-443.error.log error;
@@ -76,7 +76,7 @@ server {
 	#
 	
 	root /var/www/html;
-	index index.php;
+	index	index.php;
 	
 	location / {
 		try_files $uri $uri/ /index.php$is_args$args;
@@ -89,6 +89,8 @@ server {
 		#The following parameter can be also included in fastcgi_params file
 		fastcgi_param	SCRIPT_FILENAME	$document_root$fastcgi_script_name;
 	}
+	#
+	#
 	# deny access to .htaccess vb. files, if Apache's document root
 	location ~/\. {
 		deny all;     
