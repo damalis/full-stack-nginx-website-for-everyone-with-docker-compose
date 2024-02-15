@@ -211,7 +211,7 @@ services:
     varnish:
         depends_on:
             website:
-                condition: service_healthy           
+                condition: service_healthy
         image: varnish:${VARNISH_VERSION}
         container_name: varnish
         networks:
