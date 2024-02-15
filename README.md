@@ -310,7 +310,7 @@ Varnish Server Host = varnish
 
 Varnish Server Port = 6082
 
-after every change in the wordpress and the varnish configuration or if You get error "502 Bad Gateway":
+after every change in the Website and the varnish configuration or if You get error "502 Bad Gateway":
 
 ```
 docker container restart varnish
