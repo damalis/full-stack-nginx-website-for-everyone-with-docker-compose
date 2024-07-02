@@ -371,7 +371,6 @@ do
 	which_db=$db
 	if [ $REPLY -eq 2 ]
 	then
-		db_authentication_password=$pma_password
 		db_package_manager="microdnf install -y gettext"
 		db_admin_commandline="mysqladmin"
 	fi
