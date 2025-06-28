@@ -336,7 +336,7 @@ echo "Ok."
 ssl_snippet=""
 if [ "$which_h" == "localhost" ]
 then
-	ssl_snippet="echo 'Generated Self-signed SSL Certificate for localhost'"
+	ssl_snippet="echo 'Generated Self-signed SSL Certificate at localhost'"
 	if [ "$lpms" == "apk" ]
 	then
 		sudo apk add --no-cache nss-tools go git
