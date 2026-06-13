@@ -39,7 +39,7 @@ services:
         labels:
             - 'docker-volume-backup.stop-during-backup=true'
         command: >
-            bash -c "apt-get update && sh /tmp/packagecheck.sh 'gettext-base' && curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s intl mysqli pdo_mysql redis && 
+            bash -c "apt-get update && sh /tmp/packagecheck.sh 'gettext-base' && curl -sSLf https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s intl mysqli pdo_mysql redis && 
             envsubst '$${DB_USER},$${DB_PASSWORD},$${DB_NAME}' < ${WEBSERVER_DOC_ROOT}/index.php.template > ${WEBSERVER_DOC_ROOT}/index.php && TMP=$$(mktemp) && grep -vF 'date.timezone' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini > $$TMP && echo 'date.timezone = ${LOCAL_TIMEZONE}' >> $$TMP && cp $$TMP ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; php-fpm"
 
     webserver:
